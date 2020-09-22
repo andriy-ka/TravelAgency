@@ -31,4 +31,8 @@ public class HotelServiceImpl implements HotelService {
     public void addHotel(Hotel hotel) {
         this.hotelDao.addHotel(hotel);
     }
+
+    public List<Hotel> findHotelByCountry(String country){
+        return this.hotelDao.findHotelByCountry(country);
+    }
 }

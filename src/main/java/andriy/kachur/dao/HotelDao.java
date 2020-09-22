@@ -7,6 +7,7 @@ import java.util.List;
 
 
 public interface HotelDao {
-    public List<Hotel> listHotels();
-    public void addHotel(Hotel hotel);
+    List<Hotel> listHotels();
+    void addHotel(Hotel hotel);
+    List<Hotel> findHotelByCountry(String country);
 }
