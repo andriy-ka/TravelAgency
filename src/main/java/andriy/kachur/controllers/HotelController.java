@@ -36,18 +36,42 @@ public class HotelController {
         model.addAttribute("hotel", hotel);
         return "addHotel";
     }
+//    @GetMapping(name = "/filter")
+//    public String findHotelByCountry(@RequestParam String country, Model model){
+//        List<Hotel> hotels = this.hotelService.findHotelByCountry(country);
+//        model.addAttribute("hotels", hotels);
+//        return "filter";
+//    }
+
 
     @PostMapping(value= "/addHotel")
     public String addHotel(@ModelAttribute("hotel") Hotel hotel){
         this.hotelService.addHotel(hotel);
         return "redirect:/hotel/management";
     }
-    @PostMapping(name = "")
-    public List<Hotel> findHotelByCountry(String country){
-        return null;
+    @PostMapping(name = "/filter")
+    public String findHotelByCountry(@RequestParam String country, Model model){
+        List<Hotel> hotels = this.hotelService.findHotelByCountry(country);
+        model.addAttribute("hotels", hotels);
+        return "redirect:/hotel/management";
     }
 
+    @GetMapping(value = "/showUpdateForm")
+    public String showUpdateForm(@RequestParam("hotelId") Integer hotelId, Model model){
+        Hotel hotel = findById(hotelId);
+        model.addAttribute("hotel", hotel);
+        return "addHotel";
+    }
+    @GetMapping(value = "/deleteRecord")
+    public String deleteHotel(@RequestParam("hotelId") Integer hotelId){
+        Hotel hotel = findById(hotelId);
+        hotelService.deleteHotel(hotel);
+        return "redirect:/hotel/management";
+    }
 
-
+    private Hotel findById(Integer hotelId){
+        Hotel hotel = hotelService.findHotelById(hotelId);
+        return hotel;
+    }
 
 }

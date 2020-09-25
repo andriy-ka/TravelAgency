@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public class HotelServiceImpl implements HotelService {
 
-
     private final HotelDao hotelDao;
 
     @Autowired
@@ -32,7 +31,21 @@ public class HotelServiceImpl implements HotelService {
         this.hotelDao.addHotel(hotel);
     }
 
+    @Override
+    @Transactional
     public List<Hotel> findHotelByCountry(String country){
         return this.hotelDao.findHotelByCountry(country);
+    }
+
+    @Override
+    @Transactional
+    public Hotel findHotelById(Integer hotelId) {
+        return hotelDao.findHotelById(hotelId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteHotel(Hotel hotel) {
+        hotelDao.deleteHotel(hotel);
     }
 }

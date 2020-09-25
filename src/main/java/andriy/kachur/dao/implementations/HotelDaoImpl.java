@@ -23,28 +23,43 @@ public class HotelDaoImpl implements HotelDao {
 
     @SuppressWarnings("unchecked")
     @Override
+    @Transactional
     public List<Hotel> listHotels() {
         Session session = this.sessionFactory.getCurrentSession();
         List<Hotel> hotelsList = session.createQuery("from Hotel").list();
-
         return hotelsList;
     }
 
     @Override
     @Transactional
     public void addHotel(Hotel hotel) {
-        //Session session = this.sessionFactory.getCurrentSession();
-        sessionFactory.getCurrentSession().save(hotel);
+        sessionFactory.getCurrentSession().saveOrUpdate(hotel);
     }
 
     @Override
+    @Transactional
     public List<Hotel> findHotelByCountry(String country) {
         Session session = this.sessionFactory.getCurrentSession();
-        List<Hotel> hotelByCountry =
-                session.createQuery("from Hotel where country=:country")
-                .setParameter("country", country)
-                .list();
-        return hotelByCountry;
+        List<Hotel> hotelsList = session.createQuery("from Hotel").list();
+        List<Hotel> hotelByCountry = hotelsList;
+        for(Hotel hotel : hotelsList){
+            if(hotel.getCountry().equals(country)){
+                hotelByCountry.add(hotel);
+            }
+        }
+        return hotelsList;
+    }
+
+    @Override
+    @Transactional
+    public Hotel findHotelById(Integer hotelId) {
+        return sessionFactory.getCurrentSession().get(Hotel.class, hotelId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteHotel(Hotel hotel) {
+        sessionFactory.getCurrentSession().delete(hotel);
     }
 
 }
