@@ -16,7 +16,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="hotel" items="${hotels}">
+    <c:forEach var="hotel" items="${foundHotels}">
         <tr>
             <td>${hotel.id}</td>
             <td>${hotel.name}</td>

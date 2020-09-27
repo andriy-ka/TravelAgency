@@ -16,11 +16,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/management", "/filter", "/addUser").hasRole("ADMIN")
+                .antMatchers("/management", "/filter", "/addUser", "/homepage", "/addOrder").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/login").defaultSuccessUrl("/hotel/homepage", true)
                 .permitAll()
                 .and()
                 .logout()

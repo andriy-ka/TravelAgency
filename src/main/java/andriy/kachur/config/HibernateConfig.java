@@ -47,6 +47,8 @@ public class HibernateConfig {
 
     private final Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
+        hibernateProperties.setProperty("hibernate.search.default.directory_provider",
+                "org.hibernate.search.store.impl.FSDirectoryProvider");
         hibernateProperties.setProperty(
                 "hibernate.hbm2ddl.auto", "update");
         hibernateProperties.setProperty(
