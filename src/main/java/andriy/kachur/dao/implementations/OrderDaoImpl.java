@@ -10,11 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class OrderDaoImpl implements OrderDao {
+
     private SessionFactory sessionFactory;
 
     @Autowired
-    public void setSessionFactory(SessionFactory sf) {
-        this.sessionFactory = sf;
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     @Override

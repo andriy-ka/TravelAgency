@@ -1,32 +1,35 @@
 package andriy.kachur.model;
 
-
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "order")
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private int order_id;
-    @Column(name = "username")
-    private String username;
-    @Column(name = "data")
-    private Date data;
-    @Column(name = "bookedrooms")
-    private int bookedrooms;
+    @Column(name = "ordername")
+    private String ordername;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "period")
+    private Date date;
+    @Column(name = "room")
+    private int room;
 
-    public Order(){
+    public Order() {
 
     }
 
-    public Order(int order_id, String username, Date data, int bookedrooms) {
+    public Order(int order_id, String ordername, String email, Date date, int room) {
         this.order_id = order_id;
-        this.username = username;
-        this.data = data;
-        this.bookedrooms = bookedrooms;
+        this.ordername = ordername;
+        this.email = email;
+        this.date = date;
+        this.room = room;
     }
 
     public int getOrder_id() {
@@ -37,28 +40,35 @@ public class Order {
         this.order_id = order_id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getOrdername() {
+        return ordername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setOrdername(String ordername) {
+        this.ordername = ordername;
     }
 
-    public Date getData() {
-        return data;
+    public String getEmail() {
+        return email;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getBookedrooms() {
-        return bookedrooms;
+    public Date getDate() {
+        return date;
     }
 
-    public void setBookedrooms(int bookedrooms) {
-        this.bookedrooms = bookedrooms;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
+    public int getRoom() {
+        return room;
+    }
+
+    public void setRoom(int room) {
+        this.room = room;
+    }
 }

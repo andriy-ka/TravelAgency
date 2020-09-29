@@ -1,5 +1,8 @@
 package andriy.kachur.model;
 
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
 import org.hibernate.search.annotations.*;
 import org.hibernate.search.annotations.Index;
 
@@ -7,7 +10,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "hotel")
-@Indexed
+@FilterDef(name = "countryFilter", parameters = { @ParamDef(name = "country", type = "string") })
+@Filter(name = "countryFilter", condition = "country= :country ")
+//@Indexed
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +21,7 @@ public class Hotel {
     @Column(name = "name")
     private String name;
     @Column(name = "country")
-    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
+    //@Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String country;
     @Column(name = "availableRooms")
     private int availableRooms;

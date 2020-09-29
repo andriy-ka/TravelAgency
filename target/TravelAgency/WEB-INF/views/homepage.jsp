@@ -6,8 +6,11 @@
 </head>
 <body>
 <h1>Welcome </h1>
+<form action="filter">
+    <input type="text" name="country">
+    <input type="submit" value="Submit" />
+</form>
 <h3>List</h3>
-
 <table border="1">
     <thead>
     <tr>

@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/hotel")
@@ -32,12 +34,12 @@ public class HotelController {
         return "management";
     }
 
-//    @GetMapping("/homepage")
-//    public String homepage(Model model){
-//        List<Hotel> hotels = this.hotelService.listHotels();
-//        model.addAttribute("hotels", hotels);
-//        return "homepage";
-//    }
+    @GetMapping(value = "/filter")
+    public String searchPage(@RequestParam String country, Model model) {
+        List<Hotel> allFound = hotelService.findHotelByCountry(country);
+        model.addAttribute("foundHotels", allFound);
+        return "filter";
+    }
 
     @GetMapping(value = "/addHotel")
     public String addHotel(Model model){
@@ -45,62 +47,6 @@ public class HotelController {
         model.addAttribute("hotel", hotel);
         return "addHotel";
     }
-
-//    @GetMapping(name = "/filter")
-//    public String findHotelByCountry(@RequestParam String country, Model model){
-//        List<Hotel> hotels = this.hotelService.findHotelByCountry(country);
-//        model.addAttribute("hotels", hotels);
-//        return "filter";
-//    }
-
-
-    @GetMapping(value = "/filter")
-    public ModelAndView searchPage()
-    {
-//        List<Hotel> allFound = hotelService.findHotelByCountry(country);
-//        List<Hotel> hotelModels = new ArrayList();
-//        for (Hotel h : allFound)
-//        {
-//            Hotel hotel = new Hotel();
-//            hotel.setId(h.getId());
-//            hotel.setName(h.getName());
-//            hotel.setCountry(h.getCountry());
-//            hotel.setAvailableRooms(h.getAvailableRooms());
-//            hotel.setRooms(h.getRooms());
-//
-//            hotelModels.add(hotel);
-//        }
-//        ModelAndView mav = new ModelAndView("filter");
-//        mav.addObject("foundHotels", hotelModels);
-//        return mav;
-        ModelAndView mav = new ModelAndView("filter");
-        return mav;
-    }
-
-    @PostMapping(value = "/filter")
-    public ModelAndView search(@RequestParam("country") String country) throws Exception
-    {
-        List<Hotel> allFound = hotelService.findHotelByCountry(country);
-        List<Hotel> hotelModels = new ArrayList();
-
-        for (Hotel h : allFound)
-        {
-            Hotel hotel = new Hotel();
-            hotel.setId(h.getId());
-            hotel.setName(h.getName());
-            hotel.setCountry(h.getCountry());
-            hotel.setAvailableRooms(h.getAvailableRooms());
-            hotel.setRooms(h.getRooms());
-
-            hotelModels.add(hotel);
-        }
-
-        ModelAndView mav = new ModelAndView("filter");
-        mav.addObject("foundHotels", hotelModels);
-        return mav;
-    }
-
-
 
     @PostMapping(value= "/addHotel")
     public String addHotel(@ModelAttribute("hotel") Hotel hotel){

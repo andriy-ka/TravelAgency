@@ -7,10 +7,6 @@
 </head>
 <body>
 <h2>List</h2>
-<form action="filter">
-    <input type="text" name="country">
-    <input type="submit" value="Submit" />
-</form>
 <table border="1">
     <thead>
     <tr>

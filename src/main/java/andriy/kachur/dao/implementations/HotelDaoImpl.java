@@ -3,6 +3,8 @@ package andriy.kachur.dao.implementations;
 import andriy.kachur.dao.HotelDao;
 import andriy.kachur.model.Hotel;
 import org.apache.lucene.search.Query;
+import org.hibernate.Filter;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.search.FullTextSession;
@@ -42,27 +44,12 @@ public class HotelDaoImpl implements HotelDao {
     @Override
     @Transactional
     public List<Hotel> findHotelByCountry(String country){
-        try
-        {
-            Session session = sessionFactory.getCurrentSession();
-
-            FullTextSession fullTextSession = Search.getFullTextSession(session);
-
-            QueryBuilder qb = fullTextSession.getSearchFactory()
-                    .buildQueryBuilder().forEntity(Hotel.class).get();
-            Query query = qb
-                    .keyword().onField("country")
-                    .matching(country)
-                    .createQuery();
-            List<Hotel> hotels =
-                    fullTextSession.createFullTextQuery(query, Hotel.class).list();
-
-            return hotels;
-        }
-        catch(Exception e)
-        {
-            throw e;
-        }
+        List<Hotel> hotelsList = null;
+        Session session = sessionFactory.getCurrentSession();
+        Filter filter = session.enableFilter("countryFilter");
+        filter.setParameter("country", country);
+        hotelsList = session.createQuery("from Hotel").list();
+        return hotelsList;
     }
 //        Session session = this.sessionFactory.getCurrentSession();
 //        List<Hotel> hotelsList = session.createQuery("from Hotel").list();

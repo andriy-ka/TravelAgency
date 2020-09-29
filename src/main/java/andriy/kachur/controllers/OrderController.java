@@ -8,10 +8,7 @@ import andriy.kachur.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,6 +34,13 @@ public class OrderController {
         model.addAttribute("hotels", hotels);
         return "homepage";
     }
+
+//    @GetMapping(value = "/filter")
+//    public String searchPage(@RequestParam String country, Model model) {
+//        List<Hotel> allFound = hotelService.findHotelByCountry(country);
+//        model.addAttribute("foundHotels", allFound);
+//        return "filter";
+//    }
 
     @GetMapping(value = "/addOrder")
     public String addOrder(Model model){
