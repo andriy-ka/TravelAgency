@@ -3,8 +3,9 @@ package andriy.kachur.model;
 import javax.persistence.*;
 import java.sql.Date;
 
+
 @Entity
-@Table(name = "order")
+@Table(name = "book")
 public class Order {
 
     @Id
@@ -31,6 +32,7 @@ public class Order {
         this.date = date;
         this.room = room;
     }
+
 
     public int getOrder_id() {
         return order_id;

@@ -37,6 +37,11 @@ public class HotelController {
     @GetMapping(value = "/filter")
     public String searchPage(@RequestParam String country, Model model) {
         List<Hotel> allFound = hotelService.findHotelByCountry(country);
+        if(allFound == null) {
+            List<Hotel> hotels = hotelService.listHotels();
+            model.addAttribute("foundHotels", hotels);
+            return "filter";
+        }
         model.addAttribute("foundHotels", allFound);
         return "filter";
     }

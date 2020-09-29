@@ -6,10 +6,6 @@
     <title>list of hotel</title>
 </head>
 <body>
-<form action="filter">
-    <input type="text" name="country">
-    <input type="submit" value="Submit" />
-</form>
 <h2>List</h2>
 <table border="1">
     <thead>

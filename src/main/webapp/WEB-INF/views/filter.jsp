@@ -18,7 +18,7 @@
     </thead>
     <tbody>
     <c:forEach var="hotel" items="${foundHotels}">
-        <c:url var="orderLink" value="/hotel/addOrder">
+        <c:url var="bookLink" value="/hotel/addOrder">
             <c:param name="hotelId" value="${hotel.id}"/>
         </c:url>
         <tr>
@@ -28,7 +28,7 @@
             <td>${hotel.availableRooms}</td>
             <td>${hotel.rooms}</td>
             <td>
-                <a href="${orderLink}">Make order<a/>
+                <a href="${bookLink}">Make book<a/>
             </td>
         </tr>
     </c:forEach>

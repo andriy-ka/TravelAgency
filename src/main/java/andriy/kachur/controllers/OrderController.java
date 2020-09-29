@@ -35,13 +35,6 @@ public class OrderController {
         return "homepage";
     }
 
-//    @GetMapping(value = "/filter")
-//    public String searchPage(@RequestParam String country, Model model) {
-//        List<Hotel> allFound = hotelService.findHotelByCountry(country);
-//        model.addAttribute("foundHotels", allFound);
-//        return "filter";
-//    }
-
     @GetMapping(value = "/addOrder")
     public String addOrder(Model model){
         Order order = new Order();
