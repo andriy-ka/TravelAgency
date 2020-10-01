@@ -35,6 +35,7 @@
             <td>${hotel.rooms}</td>
             <td>
                 <a href="${bookLink}">Make book<a/>
+                    
             </td>
         </tr>
     </c:forEach>

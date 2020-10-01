@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -21,5 +23,11 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public void addOrder(Order order) {
         this.orderDao.addOrder(order);
+    }
+
+    @Override
+    @Transactional
+    public List<Order> getAllOrders() {
+        return orderDao.getAllOrders();
     }
 }

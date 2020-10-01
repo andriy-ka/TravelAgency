@@ -20,17 +20,21 @@ public class Order {
     private Date date;
     @Column(name = "room")
     private int room;
+    @Column(name = "hotel")
+    private String hotel;
+
 
     public Order() {
 
     }
 
-    public Order(int order_id, String ordername, String email, Date date, int room) {
+    public Order(int order_id, String ordername, String email, Date date, int room, String hotel) {
         this.order_id = order_id;
         this.ordername = ordername;
         this.email = email;
         this.date = date;
         this.room = room;
+        this.hotel = hotel;
     }
 
 
@@ -73,4 +77,14 @@ public class Order {
     public void setRoom(int room) {
         this.room = room;
     }
+
+    public String getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(String hotel) {
+        this.hotel = hotel;
+    }
+
+
 }

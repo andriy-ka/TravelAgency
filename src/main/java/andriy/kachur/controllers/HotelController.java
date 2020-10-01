@@ -1,7 +1,10 @@
 package andriy.kachur.controllers;
 
+import andriy.kachur.dao.OrderDao;
 import andriy.kachur.model.Hotel;
+import andriy.kachur.model.Order;
 import andriy.kachur.service.HotelService;
+import andriy.kachur.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,19 +21,23 @@ import java.util.Map;
 public class HotelController {
 
     private HotelService hotelService;
+    private OrderService orderService;
 
     public HotelController() {
     }
 
     @Autowired
-    public HotelController(HotelService hotelService) {
+    public HotelController(HotelService hotelService, OrderService orderService) {
         this.hotelService = hotelService;
+        this.orderService = orderService;
     }
 
     @GetMapping("/management")
     public String listHotels(Model model){
         List<Hotel> hotels = this.hotelService.listHotels();
         model.addAttribute("hotels", hotels);
+        List<Order> orders = this.orderService.getAllOrders();
+        model.addAttribute("orders", orders);
         return "management";
     }
 
@@ -59,12 +66,6 @@ public class HotelController {
         return "redirect:/hotel/management";
     }
 
-//    @PostMapping(name = "/filter")
-//    public String findHotelByCountry(@RequestParam String country, Model model){
-//        List<Hotel> hotels = this.hotelService.findHotelByCountry(country);
-//        model.addAttribute("hotels", hotels);
-//        return "redirect:/hotel/management";
-//    }
 
     @GetMapping(value = "/showUpdateForm")
     public String showUpdateForm(@RequestParam("hotelId") Integer hotelId, Model model){

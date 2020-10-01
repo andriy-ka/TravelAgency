@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -7,10 +8,14 @@
 </head>
 <body>
 
-<p><b>Add New Order</b></p>
+<p><b><h1>Add New Order</h1></b></p>
 <form:form modelAttribute="order" action="addOrder">
     <table>
         <form:hidden path="order_id"/>
+        <form:hidden path="hotel" value="${hotelname}"/>
+        <tr>
+            <td><h2>Hotel: ${hotelname}</h2></td>
+        </tr>
         <tr>
             <td>Order name:</td>
             <td><form:input path="ordername" type="text"/></td>

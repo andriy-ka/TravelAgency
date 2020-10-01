@@ -41,6 +41,32 @@
 </table>
 
 <a href="addHotel">Add Hotel</a>
+
+<h2>List of Orders</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Hotel</th>
+        <th>Email</th>
+        <th>Date</th>
+        <th>Room</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="order" items="${orders}">
+        <tr>
+            <td>${order.order_id}</td>
+            <td>${order.ordername}</td>
+            <td>${order.hotel}</td>
+            <td>${order.email}</td>
+            <td>${order.date}</td>
+            <td>${order.room}</td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
 </body>
 </html>
 

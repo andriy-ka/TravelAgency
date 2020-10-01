@@ -18,6 +18,7 @@ public class OrderController {
 
     private OrderService orderService;
     private HotelService hotelService;
+    static int hotelId;
 
     public OrderController() {
     }
@@ -36,16 +37,27 @@ public class OrderController {
     }
 
     @GetMapping(value = "/addOrder")
-    public String addOrder(Model model){
+    public String addOrder(Model model, @RequestParam("hotelId") Integer hotelId){
         Order order = new Order();
+        this.hotelId = hotelId;
+        String hotelname  = findById(hotelId).getName();
         model.addAttribute("order", order);
+        model.addAttribute("hotelname", hotelname);
         return "addOrder";
     }
 
     @PostMapping(value= "/addOrder")
     public String addOrder(@ModelAttribute("order") Order order){
         this.orderService.addOrder(order);
+        Hotel hotel = findById(hotelId);
+        hotel.setAvailableRooms(hotel.getAvailableRooms()-order.getRoom());
+        hotelService.addHotel(hotel);
         return "redirect:/hotel/homepage";
+    }
+
+    private Hotel findById(Integer hotelId){
+        Hotel hotel = hotelService.findHotelById(hotelId);
+        return hotel;
     }
 
 
