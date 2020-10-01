@@ -5,7 +5,7 @@
     <title>Home</title>
 </head>
 <body>
-<h1>Welcome </h1>
+<h1>Welcome ${username}</h1>
 <form action="filter">
     <input type="text" name="country">
     <input type="submit" value="Submit" />

@@ -14,7 +14,7 @@
         <form:hidden path="order_id"/>
         <form:hidden path="hotel" value="${hotelname}"/>
         <tr>
-            <td><h2 color="#fff">Hotel: ${hotelname}</h2></td>
+            <td><h2>Hotel: ${hotelname}</h2></td>
         </tr>
         <tr>
             <td>Order name:</td>
